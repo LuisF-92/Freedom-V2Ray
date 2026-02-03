@@ -1,5 +1,6 @@
 import requests
 import base64
+import json
 import re
 import os
 import socket
@@ -19,41 +20,82 @@ SOURCES = [
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
+def decode_base64(data):
+    cleaned = data.strip()
+    cleaned += "=" * (-len(cleaned) % 4)
+    try:
+        return base64.urlsafe_b64decode(cleaned).decode("utf-8")
+    except (ValueError, UnicodeDecodeError):
+        return None
+
+def parse_vmess(config):
+    payload = decode_base64(config[8:])
+    if not payload:
+        return None
+    try:
+        vmess_data = json.loads(payload)
+    except json.JSONDecodeError:
+        return None
+    host = vmess_data.get("add")
+    port = vmess_data.get("port")
+    if not host or not port:
+        return None
+    try:
+        return host, int(port)
+    except (TypeError, ValueError):
+        return None
+
+def parse_ss(config):
+    data = config[5:]
+    data = data.split("#", 1)[0]
+    if "@" in data:
+        host_port = data.split("@", 1)[1]
+    else:
+        decoded = decode_base64(data)
+        if not decoded or "@" not in decoded:
+            return None
+        host_port = decoded.split("@", 1)[1]
+    host_port = host_port.split("?", 1)[0]
+    match = re.search(r"^([^:/]+):(\d+)$", host_port)
+    if not match:
+        return None
+    return match.group(1), int(match.group(2))
+
+def parse_host_port(config):
+    if config.startswith("vmess://"):
+        return parse_vmess(config)
+    if config.startswith("ss://"):
+        return parse_ss(config)
+    match = re.search(r"@([^:/]+):(\d+)", config)
+    if not match:
+        return None
+    return match.group(1), int(match.group(2))
+
 def check_ping(config):
     """Improved TCP ping check with better parsing and timeout handling"""
     try:
-        # Support for different protocols
-        if config.startswith("vmess://"):
-            # VMess is base64 encoded, need to decode to find address
-            try:
-                v_data = base64.b64decode(config[8:]).decode('utf-8')
-                host = re.search(r'"add":"([^"]+)"', v_data).group(1)
-                port = int(re.search(r'"port":"?(\d+)"?', v_data).group(1))
-            except: return False
-        else:
-            # VLESS, Trojan, SS
-            host_port = re.search(r'@([^:/]+):(\d+)', config)
-            if not host_port: return False
-            host = host_port.group(1)
-            port = int(host_port.group(2))
+        host_port = parse_host_port(config)
+        if not host_port:
+            return False
+        host, port = host_port
         
         # DNS Resolution check
         try:
             ip = socket.gethostbyname(host)
-        except: return False
+        except socket.gaierror:
+            return False
 
         # TCP Connect check
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(1.5) # Faster timeout for better quality
-        start_time = time.time()
-        result = sock.connect_ex((ip, port))
-        end_time = time.time()
-        sock.close()
+        start_time = time.perf_counter()
+        try:
+            with socket.create_connection((ip, port), timeout=1.5):
+                end_time = time.perf_counter()
+        except (socket.timeout, OSError):
+            return False
         
-        if result == 0:
-            latency = int((end_time - start_time) * 1000)
-            return latency < 1000 # Only keep configs with < 1s latency
-    except:
+        latency = int((end_time - start_time) * 1000)
+        return latency < 1000 # Only keep configs with < 1s latency
+    except Exception:
         pass
     return False
 
@@ -73,10 +115,12 @@ def collect():
             if response.status_code == 200:
                 content = response.text
                 if "://" not in content[:50]:
-                    try: content = base64.b64decode(content).decode('utf-8')
-                    except: pass
+                    decoded = decode_base64(content)
+                    if decoded:
+                        content = decoded
                 all_configs.extend(content.splitlines())
-        except: pass
+        except requests.RequestException:
+            pass
 
     unique_configs = list(set([c.strip() for c in all_configs if "://" in c]))
     
