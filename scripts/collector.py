@@ -26,7 +26,10 @@ def decode_base64(data):
     try:
         return base64.urlsafe_b64decode(cleaned).decode("utf-8")
     except (ValueError, UnicodeDecodeError):
-        return None
+        try:
+            return base64.b64decode(cleaned).decode("utf-8")
+        except (ValueError, UnicodeDecodeError):
+            return None
 
 def parse_vmess(config):
     payload = decode_base64(config[8:])
@@ -71,6 +74,30 @@ def parse_host_port(config):
         return None
     return match.group(1), int(match.group(2))
 
+def resolve_host(host, port):
+    try:
+        addr_info = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+    except socket.gaierror:
+        return []
+    return [(family, sockaddr) for family, _, _, _, sockaddr in addr_info]
+
+def connect_latency(host, port, timeout=1.5, retries=2):
+    addresses = resolve_host(host, port)
+    if not addresses:
+        return None
+    for _ in range(retries + 1):
+        for family, sockaddr in addresses:
+            start_time = time.perf_counter()
+            try:
+                with socket.socket(family, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(timeout)
+                    sock.connect(sockaddr)
+                end_time = time.perf_counter()
+                return int((end_time - start_time) * 1000)
+            except (socket.timeout, OSError):
+                continue
+    return None
+
 def check_ping(config):
     """Improved TCP ping check with better parsing and timeout handling"""
     try:
@@ -78,22 +105,10 @@ def check_ping(config):
         if not host_port:
             return False
         host, port = host_port
-        
-        # DNS Resolution check
-        try:
-            ip = socket.gethostbyname(host)
-        except socket.gaierror:
-            return False
 
-        # TCP Connect check
-        start_time = time.perf_counter()
-        try:
-            with socket.create_connection((ip, port), timeout=1.5):
-                end_time = time.perf_counter()
-        except (socket.timeout, OSError):
+        latency = connect_latency(host, port)
+        if latency is None:
             return False
-        
-        latency = int((end_time - start_time) * 1000)
         return latency < 1000 # Only keep configs with < 1s latency
     except Exception:
         pass
@@ -122,7 +137,7 @@ def collect():
         except requests.RequestException:
             pass
 
-    unique_configs = list(set([c.strip() for c in all_configs if "://" in c]))
+    unique_configs = list(set([c.strip() for c in all_configs if "://" in c and c.strip()]))
     
     # Parallel testing with more workers
     valid_configs = []
